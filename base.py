@@ -15,6 +15,26 @@ def connect():
                              cursorclass=pymysql.cursors.DictCursor)
     return connection
 
+def create_table2():
+    try:
+        connection = connect()
+        with connection.cursor() as cursor:
+
+            sql = """
+            CREATE TABLE IF NOT EXISTS users (
+            user_id int PRIMARY KEY NOT NULL,
+            username varchar(255),
+            firstname varchar(255),
+            lastname varchar(255),
+            about text,
+            phone VARCHAR(15) UNIQUE)
+            """
+
+            cursor.execute(sql)
+
+    finally:    
+        connection.close()
+
 
 def create_table():
     try:
@@ -27,7 +47,7 @@ def create_table():
             username varchar(255),
             firstname varchar(255),
             lastname varchar(255),
-            about text,
+            message text,
             phone VARCHAR(15) UNIQUE)
             """
 
