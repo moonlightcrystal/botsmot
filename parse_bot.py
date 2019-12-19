@@ -19,8 +19,11 @@ client.start(phone='+79300091581')
 async def parse(event):
    namechannel = event.message.raw_text[12:]
    info = await client.get_entity(namechannel)
-   history = await client.get_messages(info, 2000)
-   print(history)
+   history = await client.get_messages(info, 10)
+   for message in history:
+      print(message.stringify())
+
+   # print(history)
    # users = await client.get_participants(info)
    # base.create_table()
    # base.feel_it(users)
